@@ -58,11 +58,14 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
                 let allItems = components[i].items
                 console.log(allItems)
                 let lastElem = allItems[allItems.length-1]
-                lastElem = experience.findLayerById(lastElem.id)
+                lastElem = e.findLayerById(lastElem.id)
+                // lastElem = document.getElementById(lastElem.id)
                 console.log(lastElem)
                 let gr = document.getElementById(components[i].id)
                 gr.style.width = `${lastElem.width}px`
                 gr.style.height = `${lastElem.height}px`
+                // gr.style.width = lastElem.style.width
+                // gr.style.height = lastElem.style.height
                 console.log(gr)
                 allChildren.push(gr)
                 break
