@@ -68,14 +68,14 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
                 // gr.style.height = lastElem.style.height
                 console.log(gr)
                 allChildren.push(gr)
-                break
+                return allChildren
             }
             // let isGroup = components[i].type==='group'
             let component = document.getElementById(components[i].id);
             let comp = $(component).children().toArray();
             allChildren[i] = comp;
         }
-        return allChildren;
+        return allChildren
     }
     var beforeComps = getChildren(beforeComponents);
     var afterComps = getChildren(afterComponents);
