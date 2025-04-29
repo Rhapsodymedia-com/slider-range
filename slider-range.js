@@ -59,8 +59,8 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
                 let lastElem = allItems[allItems.length-1]
                 lastElem = experience.findLayerById(lastElem.id)
                 let gr = document.getElementById(components[i].id)
-                gr.style.width = lastElem.width
-                gr.style.height = lastElem.height
+                gr.style.width = `${lastElem.width}px`
+                gr.style.height = `${lastElem.height}px`
                 allChildren.add(gr)
                 break
             }
