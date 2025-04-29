@@ -56,12 +56,15 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
         for(let i = 0; i<components.length; i++){
             if(components[i].type==='group'){
                 let allItems = components[i].items
+                console.log(allItems)
                 let lastElem = allItems[allItems.length-1]
                 lastElem = experience.findLayerById(lastElem.id)
+                console.log(lastElem)
                 let gr = document.getElementById(components[i].id)
                 gr.style.width = `${lastElem.width}px`
                 gr.style.height = `${lastElem.height}px`
-                allChildren.add(gr)
+                console.log(gr)
+                allChildren.push(gr)
                 break
             }
             // let isGroup = components[i].type==='group'
