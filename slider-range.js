@@ -68,6 +68,7 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
                 // gr.style.height = lastElem.style.height
                 console.log(gr)
                 allChildren.push(gr)
+                console.log(allChildren)
                 return allChildren
             }
             // let isGroup = components[i].type==='group'
@@ -95,7 +96,8 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
         slider.addEventListener("mouseleave", sliderMove);
     }
 
-    let clipPathFunction = (arr, v) =>{
+    let clipPathFunction = (arr, v) => {
+        console.log(arr)
         let inset = ('inset(' + v.toString() + ')');
         for(let ar of arr){
             ar.style.animation = null;
