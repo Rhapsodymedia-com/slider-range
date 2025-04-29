@@ -67,7 +67,7 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
                 // gr.style.width = lastElem.style.width
                 // gr.style.height = lastElem.style.height
                 console.log(gr)
-                allChildren.push(gr)
+                allChildren.push([gr])
                 console.log(allChildren)
                 return allChildren
             }
