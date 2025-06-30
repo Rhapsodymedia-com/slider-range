@@ -1,0 +1,111 @@
+:root{
+    --thumb-width: 6px;
+    --controller-width: 68px;
+    --controller-height: 45px;
+}
+.slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    justify-self: center;
+}
+.slider-range {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: col-resize;
+    background: rgba(0,0,0,0);
+}
+.slider-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    position:absolute;
+    width: var(--thumb-width, 6px);
+    height: var(--controller-height, 45px);
+    border: 0;
+}
+.slider-range::-moz-range-thumb {
+    appearance: none;
+    background: none;
+    position:absolute;
+    width: var(--thumb-width, 6px);
+    height: var(--controller-height, 45px);
+    border-radius: 0%;
+    border: 0;
+}
+input[type=range].slider-range::-moz-focus-outer {
+    border: 0;
+}
+input[type=range]::-moz-range-track {
+    background-color: rgba(0,0,0,0);
+}
+.controller-container{
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    width: var(--thumb-width, 6px);
+    height: 100%;
+    margin-left: calc(var(--thumb-width, 6px)*(-0.5));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.controller{
+    position:absolute;
+    width: var(--controller-width, 68px);
+    height: var(--controller-height, 45px);
+    background-color: white;
+}
+.arrows-container{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.arrows{
+    margin: 5%;
+    width: 40%;
+}
+.left-arrow{
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+.arrow{
+    fill: black;
+}
+@keyframes sliderMove {
+    0%{
+    left: 25%;
+    }
+    100%{
+    left: 75%;
+    }
+}
+@keyframes compAnimBefore {
+    0%{
+        -webkit-clip-path:inset(0% 75% 0% 0%);
+        clip-path:inset(0% 75% 0% 0%);
+    }
+    100%{
+        -webkit-clip-path:inset(0% 25% 0% 0%);
+        clip-path:inset(0% 25% 0% 0%);
+    }
+}
+@keyframes compAnimAfter {
+    0%{
+    -webkit-clip-path:inset(0% 0% 0% 25%);
+    clip-path:inset(0% 0% 0% 25%);
+    }
+    100%{
+    -webkit-clip-path:inset(0% 0% 0% 75%);
+    clip-path:inset(0% 0% 0% 75%);
+    }
+}
