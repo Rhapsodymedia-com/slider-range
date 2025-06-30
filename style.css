@@ -1,7 +1,7 @@
 :root{
     --thumb-width: 6px;
     --controller-width: 68px;
-    --controller-height: 45px;
+    --controller-height: 100%;
 }
 .slider-container {
     width: 100%;
@@ -22,7 +22,11 @@
 .slider-range::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    position:absolute;
+    position: absolute;top: 0px !important;
+    box-shadow: 0px 0px !important;
+    outline: none !important;
+    background-color: transparent !important;
+    left: 0px !important;
     width: var(--thumb-width, 6px);
     height: var(--controller-height, 45px);
     border: 0;
