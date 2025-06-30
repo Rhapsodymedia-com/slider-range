@@ -1,4 +1,4 @@
-var sliderPlugin = document.getElementById("ceros-slider-range-plugin");
+const sliderPlugin = document.getElementById("ceros-slider-range-plugin");
 var createSlider = (obj, sliderInfo) => {
     //creating div elements
     let divs = [];
@@ -89,7 +89,13 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
     var margins = 0;
 
     if(sliderInfo.follow=='false'){
-        slider.addEventListener("input", sliderMove);
+        slider.addEventListener("input", sliderMove)
+        // slider.addEventListener("click", sliderMove)
+        // slider.addEventListener("change", sliderMove)
+        // slider.addEventListener("pointerup", () => {
+        //     sliderMove(slider)
+        //     document.documentElement.style.setProperty('--thumb-width', '98%')
+        // })
     }
     else{
         slider.addEventListener("mousemove", sliderMove);
@@ -106,6 +112,7 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
         }
     }
     function sliderMove($this){
+        document.documentElement.style.setProperty('--thumb-width', `${sliderPlugin.getAttribute('line-width')}px`)
         if(controllerContainer.style.animation != null){
             controllerContainer.style.animation = null;
         }
@@ -186,6 +193,13 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
     localInitialFunction();
 }
 
+const layerToNode = layer => {
+    let newArray = []
+    for(let q=0; q<layer.length; q++)
+        newArray[q] = document.getElementById(layer[q].id)
+    return newArray
+}
+
 (function(){
     'use strict';
     require.config({
@@ -199,24 +213,33 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
                 console.error(error);
             })
             .done(function (experience) {
-                window.myExperience = experience;
-                var sliderObjects = experience.findLayersByTag("slider-range").layers;
+                const sliderObjects = experience.findLayersByTag("slider-range").layers
+                let ua = navigator.userAgent.toLowerCase()
+                let isMobile = ua.indexOf("mobile") > -1
 
-                experience.on(CerosSDK.EVENTS.PAGE_CHANGED, pageChangedCallback);
-                function pageChangedCallback(){
-                    var pageContainer = document.querySelector(".page-viewport.top > .page-container");
+                const pageChangedCallback = pag => {
+                    const pageContainer = document.querySelector(".page-viewport.top > .page-container")
                     //making new array of sliderObjects that are on current page 
-                    var currentPageSliderObjects = sliderObjects.filter(($object) =>{
+                    const currentPageSliderObjects = sliderObjects.filter($object => {
                         let $obj = document.getElementById($object.id);
                         if(pageContainer.contains($obj)){
-                            if($obj.querySelector('.slider-container')){
-                                return;
-                            }
-                            return $object;
+                            if($obj.querySelector('.slider-container'))
+                                return
+                            return $object
                         }
                     });
-                    setSliders(currentPageSliderObjects, experience, pageContainer);
+                    setSliders(currentPageSliderObjects, experience, pageContainer)
+                    if(isMobile && ua.indexOf("mac") > -1){
+                        document.documentElement.style.setProperty('--thumb-width', '98%')
+                        let slid = currentPageSliderObjects.map(sli => document.getElementById(sli.id).querySelector('input.slider-range'))
+                        for(let s of slid)
+                            s.addEventListener("change", () => document.documentElement.style.setProperty('--thumb-width', '98%'))
+                    }
+                    else{
+                        document.documentElement.style.setProperty('--thumb-width', `${sliderPlugin.getAttribute('line-width')}px`)
+                    }
                 }
+                experience.on(CerosSDK.EVENTS.PAGE_CHANGED, pageChangedCallback)
             })
     });
 })();
