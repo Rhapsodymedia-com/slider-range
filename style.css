@@ -61,7 +61,7 @@ input[type=range]::-moz-range-track {
 .controller{
     position:absolute;
     width: var(--controller-width, 68px);
-    height: var(--controller-height, 45px);
+    height: 45px;
     background-color: white;
 }
 .arrows-container{
