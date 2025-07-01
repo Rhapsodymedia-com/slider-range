@@ -56,25 +56,17 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
         for(let i = 0; i<components.length; i++){
             if(components[i].type==='group'){
                 let allItems = components[i].items
-                console.log(allItems)
                 let lastElem = allItems[allItems.length-1]
                 lastElem = e.findLayerById(lastElem.id)
-                // lastElem = document.getElementById(lastElem.id)
-                console.log(lastElem)
                 let gr = document.getElementById(components[i].id)
                 gr.style.width = `${lastElem.width}px`
                 gr.style.height = `${lastElem.height}px`
-                // gr.style.width = lastElem.style.width
-                // gr.style.height = lastElem.style.height
-                console.log(gr)
                 allChildren.push([gr])
-                console.log(allChildren)
                 return allChildren
             }
-            // let isGroup = components[i].type==='group'
-            let component = document.getElementById(components[i].id);
-            let comp = $(component).children().toArray();
-            allChildren[i] = comp;
+            let component = document.getElementById(components[i].id)
+            let comp = $(component).children().toArray()
+            allChildren[i] = comp
         }
         return allChildren
     }
@@ -90,12 +82,6 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
 
     if(sliderInfo.follow=='false'){
         slider.addEventListener("input", sliderMove)
-        // slider.addEventListener("click", sliderMove)
-        // slider.addEventListener("change", sliderMove)
-        // slider.addEventListener("pointerup", () => {
-        //     sliderMove(slider)
-        //     document.documentElement.style.setProperty('--thumb-width', '98%')
-        // })
     }
     else{
         slider.addEventListener("mousemove", sliderMove);
@@ -103,7 +89,6 @@ var controlSlider = (e, sliderInfo, sliderWid, pageCont) => {
     }
 
     let clipPathFunction = (arr, v) => {
-        console.log(arr)
         let inset = ('inset(' + v.toString() + ')');
         for(let ar of arr){
             ar.style.animation = null;
@@ -210,7 +195,7 @@ const layerToNode = layer => {
     require(['CerosSDK'], function (CerosSDK) {
         CerosSDK.findExperience()
             .fail(function (error) {
-                console.error(error);
+                console.error(error)
             })
             .done(function (experience) {
                 const sliderObjects = experience.findLayersByTag("slider-range").layers
